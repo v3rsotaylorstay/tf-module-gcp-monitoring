@@ -44,6 +44,7 @@ variable "custom_alerts" {
     auto_close_duration            = optional(string, "1800s")
     documentation                  = optional(string, "")
     notification_channel_ids       = optional(list(string), null)
+    use_base_filter                = optional(bool, true)
   }))
   description = "Mapa de alertas customizados baseados em logs"
   default     = {}

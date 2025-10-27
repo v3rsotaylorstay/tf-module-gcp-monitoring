@@ -17,7 +17,7 @@ resource "google_monitoring_alert_policy" "custom_log_alert" {
       for_each = each.value.threshold != null ? [1] : []
 
       content {
-        filter          = "${local.base_filter} AND ${each.value.log_filter}"
+        filter          = each.value.use_base_filter ? "${local.base_filter} AND ${each.value.log_filter}" : each.value.log_filter
         comparison      = "COMPARISON_GT"
         threshold_value = each.value.threshold
         duration        = each.value.duration
@@ -34,7 +34,7 @@ resource "google_monitoring_alert_policy" "custom_log_alert" {
       for_each = each.value.threshold == null ? [1] : []
 
       content {
-        filter = "${local.base_filter} AND ${each.value.log_filter}"
+        filter = each.value.use_base_filter ? "${local.base_filter} AND ${each.value.log_filter}" : each.value.log_filter
       }
     }
   }
