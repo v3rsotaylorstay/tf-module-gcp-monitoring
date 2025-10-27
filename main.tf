@@ -39,7 +39,11 @@ resource "google_monitoring_alert_policy" "custom_log_alert" {
     }
   }
 
-  notification_channels = [var.notification_channel_id]
+  notification_channels = (
+    each.value.notification_channel_ids != null 
+      ? each.value.notification_channel_ids 
+      : [var.notification_channel_id]
+  )
 
   alert_strategy {
     notification_rate_limit {
