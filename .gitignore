@@ -1,0 +1,15 @@
+# Terraform
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+!example.tfvars
+
+# Credentials
+credential.json
+*.json
+
+# OS
+.DS_Store
