@@ -8,6 +8,7 @@ resource "google_monitoring_alert_policy" "custom_log_alert" {
   display_name = "${local.alert_prefix}${each.value.display_name}"
   combiner     = "OR"
   enabled      = each.value.enabled
+  severity     = each.value.severity
 
   conditions {
     display_name = each.value.display_name
